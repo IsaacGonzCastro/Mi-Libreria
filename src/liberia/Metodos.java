@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @author Isaac
  */
 public class Metodos {
-
+    String sql = "";
     Connection cn = null;
     Statement cmd = null;
 
@@ -87,4 +87,18 @@ public class Metodos {
             System.out.println(e.getMessage());
         }
     }
+    
+     /**
+     * Permite buscar información en la base de datos mediante el nombre de la tabla,la clave primaria y el id.
+     * @param valor parametro que queremos buscar.
+     * @param tabla nombre de la tabla de la base de datos.
+     * @param clave_primaria nombre de la primary_key del objeto.
+     * @param id valor de la primery_key del objeto.
+     */
+    public void consulta(String valor,String tabla,String clave_primaria,int id) {
+
+     sql = "Select " +valor  + " from " + tabla + " where " + clave_primaria + "='" + id + "'";
+     
+    }
+    
 }
