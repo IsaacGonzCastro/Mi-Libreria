@@ -9,6 +9,7 @@ import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -50,6 +51,23 @@ public class Metodos {
 
         } catch (Exception insertar) {
             System.out.println(insertar.getMessage());
+        }
+    }
+     /**
+     * Permite actualizar la base de datos pasandole el nombre de la tabla,los valores,la clave_primaria y el id del objeto que queramos modificar.
+     * @param tabla nombre de la tabla de la base de datos.
+     * @param valores nombre de las columnas que queremos modificar en la base.
+     * @param clave_primaria nombre de la primary_key del objeto.
+     * @param id valor de la primery_key del objeto.
+     */
+    public void actualizar(String tabla, String valores, String clave_primaria, int id) {
+        try {
+            PreparedStatement pst = cn.prepareStatement("update" + tabla + "set" + valores + "where" + clave_primaria + "=" + id);
+            pst.executeUpdate();
+            System.out.println("Valores actualizados");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }
