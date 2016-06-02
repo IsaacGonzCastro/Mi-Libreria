@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ *En esta clase,se declaran los metodos básicos para trabajar en una base de datos.
  * @author Isaac
  */
 public class Metodos {
@@ -96,7 +96,7 @@ public class Metodos {
      * @param clave_primaria nombre de la primary_key del objeto.
      * @param id valor de la primery_key del objeto.
      */
-    public void consulta(String valor,String tabla,String clave_primaria,int id) {
+    public void buscar(String valor,String tabla,String clave_primaria,int id) {
 
      sql = "Select " +valor  + " from " + tabla + " where " + clave_primaria + "='" + id + "'";
      
@@ -106,7 +106,7 @@ public class Metodos {
      * Muestra la información de la base de datos pasandole el numero de columnas.
      * @param columna numero de columnas
      */
-    public void buscar(int columna){
+    public void consultar(int columna){
          String[] dato = new String[columna];
 
         try {
@@ -121,6 +121,16 @@ public class Metodos {
             }catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
+        }
+    }
+     /**
+     * Desconectala base de datos.
+     */
+    public void apagar() {
+        try {
+            cn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }
