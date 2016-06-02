@@ -70,4 +70,21 @@ public class Metodos {
             System.out.println(ex.getMessage());
         }
     }
+     /**
+     * Permite eliminar un objeto de la base da datos pasandole el nombre de la
+     * tabla,la clave primaria y el id del objeto que quieres eliminar en la base de datos.
+     * @param tabla nombre de la tabla de la base de datos.
+     * @param clave_primaria nombre de la primary_key del objeto.
+     * @param id valor de la primery_key del objeto.
+     */
+    public void eliminar(String tabla, String clave_primaria, int id) {
+        try {
+            PreparedStatement pst = cn.prepareStatement("Delete from " + tabla + " where " + clave_primaria + "='" + id + "'");
+            pst.executeUpdate();
+            System.out.println("Eliminado");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
