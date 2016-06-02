@@ -9,6 +9,7 @@ import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -101,4 +102,25 @@ public class Metodos {
      
     }
     
+    /**
+     * Muestra la información de la base de datos pasandole el numero de columnas.
+     * @param columna numero de columnas
+     */
+    public void buscar(int columna){
+         String[] dato = new String[columna];
+
+        try {
+
+            java.sql.Statement stm = (java.sql.Statement) cn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){
+                    for(int x=0;x<+dato.length;x++) {
+                 dato[x]=rs.getString(x+1);
+                     System.out.println(dato[x]);
+                    }}
+            }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+    }
 }
